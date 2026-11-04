@@ -5,9 +5,9 @@
   const io = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
       if (e.isIntersecting) e.target.classList.add('is-in');
-      // Reset only outside the viewport, avoiding flicker near the reveal threshold.
+      // The viewport buffer starts entrances early and resets only well offscreen.
       else if (e.intersectionRatio === 0) e.target.classList.remove('is-in');
     });
-  }, { threshold: 0.15, rootMargin: '0px 0px -6% 0px' });
+  }, { threshold: 0, rootMargin: '80px 0px' });
   items.forEach((el) => io.observe(el));
 })();

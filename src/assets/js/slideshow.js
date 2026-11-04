@@ -13,7 +13,7 @@
     if ('IntersectionObserver' in window) {
       const visibility = new IntersectionObserver(([entry]) => {
         root.classList.toggle('is-offscreen', !entry.isIntersecting);
-      });
+      }, { rootMargin: '80px 0px' });
       visibility.observe(root);
     }
 
@@ -38,8 +38,13 @@
     // Parallax nhẹ cho ảnh slide đầu
     const par = root.querySelector('[data-parallax]');
     if (par && !reduce) {
+      let frame = 0;
       addEventListener('scroll', () => {
-        if (scrollY < innerHeight) par.style.transform = `translate3d(0, ${scrollY * 0.18}px, 0)`;
+        if (frame || root.classList.contains('is-offscreen')) return;
+        frame = requestAnimationFrame(() => {
+          par.style.transform = `translate3d(0, ${Math.min(scrollY, innerHeight) * 0.18}px, 0)`;
+          frame = 0;
+        });
       }, { passive: true });
     }
   });
