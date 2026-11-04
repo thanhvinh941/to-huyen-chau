@@ -9,5 +9,12 @@
       else if (e.intersectionRatio === 0) e.target.classList.remove('is-in');
     });
   }, { threshold: 0, rootMargin: '80px 0px' });
-  items.forEach((el) => io.observe(el));
+  // Layered storytelling needs to start in view, rather than in the early buffer.
+  const scenes = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting && e.intersectionRatio >= 0.2) e.target.classList.add('is-in');
+      else if (!e.isIntersecting) e.target.classList.remove('is-in');
+    });
+  }, { threshold: [0, 0.2] });
+  items.forEach((el) => (el.classList.contains('craft-scene') ? scenes : io).observe(el));
 })();

@@ -1,0 +1,27 @@
+<!--#var title="Sản phẩm — Tơ Huyền Châu" -->
+<!--#var description="Khám phá hoa tai lụa, trâm cài tóc và quạt cầm tay của Tơ Huyền Châu." -->
+<!--#include partials/layout/head.html -->
+<body id="top">
+<!--#include partials/layout/header.html -->
+<main id="main" class="inner-page">
+  <header class="page-heading container">
+    <a class="breadcrumb" href="/">Trang chủ /</a>
+    <span class="eyebrow" data-reveal>Những tạo tác từ lụa</span>
+    <h1 class="h1" data-reveal>Nhỏ trong dáng hình.<br><em>Đậm trong dấu ấn.</em></h1>
+    <p class="lede" data-reveal>Hoa tai, trâm cài và quạt cầm tay. Ba cách để lụa hiện diện trong phong cách của riêng bạn.</p>
+  </header>
+  <section class="section section--paper" aria-label="Danh mục sản phẩm" data-catalog>
+    <div class="container">
+      <p class="sample-note">Danh mục mẫu · Hình ảnh, thông số và tình trạng sản phẩm đang được cập nhật.</p>
+      <form class="catalog-tools" role="search">
+        <label>Tìm sản phẩm<input type="search" name="search" placeholder="Tên hoặc loại sản phẩm…" data-search></label>
+        <label>Danh mục<select data-category><option value="">Tất cả sản phẩm</option><option value="hoa-tai">Hoa tai</option><option value="tram-cai">Trâm cài</option><option value="quat">Quạt</option></select></label>
+        <label>Sắp xếp<select data-sort><option value="featured">Nổi bật</option><option value="name">Tên A–Z</option></select></label>
+      </form>
+      <p class="note catalog-count" aria-live="polite" data-result-count>3 sản phẩm</p>
+      <ul class="products__grid catalog-grid" data-product-list><!--#include partials/components/catalog-cards.html --></ul>
+      <div class="catalog-empty" data-empty hidden><h2 class="h3">Chưa tìm thấy sản phẩm phù hợp.</h2><p>Thử tên khác hoặc chọn lại danh mục.</p><button class="link-arrow" type="button" data-reset>Đặt lại bộ lọc</button></div>
+    </div>
+  </section>
+</main>
+<!--#include partials/layout/footer.html -->

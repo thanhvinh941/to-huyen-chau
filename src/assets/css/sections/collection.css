@@ -3,7 +3,8 @@
 .collection__nav button:hover { background: var(--c-ink); color: var(--c-on-dark); }
 .collection__track {
   display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none;
-  padding-inline: var(--gutter); align-items: flex-start;
+  width: 100%; max-width: calc(var(--w-content) + var(--gutter) * 2); margin-inline: auto;
+  padding-inline: var(--gutter); scroll-padding-inline: var(--gutter); align-items: flex-start;
 }
 .collection__track::-webkit-scrollbar { display: none; }
 .cslide { flex: 0 0 78%; scroll-snap-align: start; }
@@ -13,7 +14,3 @@
 .collection__all { margin-top: 40px; }
 
 @media (min-width: 768px) { .cslide { flex-basis: 42%; } }
-@media (min-width: 1200px) {
-  .collection__track { padding-inline: max(var(--gutter), calc((100vw - var(--w-content)) / 2)); }
-  .cslide { flex-basis: 360px; }
-}

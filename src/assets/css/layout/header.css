@@ -4,7 +4,8 @@
   color: var(--c-on-dark);
   transition: background 0.4s var(--ease), color 0.4s var(--ease), box-shadow 0.4s var(--ease);
 }
-.header.is-scrolled, .header--solid, .header.is-open {
+.header.is-scrolled, .header--solid, .header.is-open,
+body:has(> [data-section-assist]) > .header {
   background: rgba(247, 242, 234, 0.88);
   -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
   color: var(--c-ink);

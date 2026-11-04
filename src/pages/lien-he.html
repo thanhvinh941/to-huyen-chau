@@ -1,0 +1,22 @@
+<!--#var title="Liên hệ — Tơ Huyền Châu" -->
+<!--#var description="Trao đổi cùng Tơ Huyền Châu về sản phẩm, đặt hàng và hợp tác." -->
+<!--#include partials/layout/head.html -->
+<body id="top">
+<!--#include partials/layout/header.html -->
+<main id="main" class="inner-page">
+  <header class="page-heading container"><a class="breadcrumb" href="/">Trang chủ /</a><span class="eyebrow" data-reveal>Kết nối</span><h1 class="h1" data-reveal>Một lời nhắn.<br><em>Mở một câu chuyện.</em></h1><p class="lede" data-reveal>Bạn muốn tìm hiểu sản phẩm, trao đổi về một món quà hay cùng phát triển một ý tưởng? Hãy bắt đầu từ đây.</p></header>
+  <section class="section section--paper"><div class="container editorial-split contact-layout"><aside><span class="eyebrow">Tơ Huyền Châu</span><h2 class="h2">Chúng tôi<br><em>lắng nghe.</em></h2><dl class="contact-channels"><dt>Email</dt><dd>Đang cập nhật địa chỉ chính thức</dd><dt>Zalo / Điện thoại</dt><dd>Đang cập nhật số liên hệ</dd><dt>Facebook</dt><dd>Đang cập nhật trang chính thức</dd></dl><p class="note">Các kênh liên hệ sẽ được mở khi thương hiệu xác nhận thông tin.</p></aside>
+    <form class="contact-form" data-contact-form>
+      <p class="sample-note">Form bản mẫu chưa kết nối gửi yêu cầu. Bạn có thể soạn và sao chép nội dung; thông tin không được gửi hay lưu trên máy chủ.</p>
+      <label>Họ và tên <span aria-hidden="true">*</span><input name="name" autocomplete="name" maxlength="100" required></label>
+      <label>Email <span aria-hidden="true">*</span><input name="email" type="email" autocomplete="email" maxlength="200" required></label>
+      <label>Số điện thoại<input name="phone" type="tel" autocomplete="tel" maxlength="30"></label>
+      <label>Bạn quan tâm đến<select name="subject"><option value="Tư vấn sản phẩm">Tư vấn sản phẩm</option><option value="Đặt hàng">Đặt hàng</option><option value="Hợp tác">Hợp tác</option><option value="Khác">Khác</option></select></label>
+      <label>Lời nhắn <span aria-hidden="true">*</span><textarea name="message" rows="5" maxlength="3000" required placeholder="Chia sẻ điều bạn đang tìm kiếm…"></textarea></label>
+      <button class="btn btn--solid" type="submit">Tạo nội dung liên hệ</button>
+      <div data-contact-output hidden><label>Nội dung đã soạn<textarea readonly rows="9" data-contact-text></textarea></label><button type="button" class="link-arrow" data-copy-contact>Sao chép nội dung</button></div>
+      <p class="note" data-contact-status role="status"></p>
+    </form>
+  </div></section>
+</main>
+<!--#include partials/layout/footer.html -->

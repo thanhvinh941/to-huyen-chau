@@ -1,26 +1,21 @@
 .p3d__grid { display: grid; gap: 48px; align-items: center; }
-.p3d__stage-wrap { text-align: center; }
+.p3d__stage-wrap { text-align: center; container-type: inline-size; min-width: 0; }
 .p3d__stage {
-  perspective: 1200px; height: 360px; display: grid; place-items: center;
+  --showcase-width: min(62cqw, calc((100svh - var(--header-h)) * .48));
+  perspective: 1200px; height: calc(var(--showcase-width) * 1.7); display: grid; place-items: center;
   cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none;
 }
 .p3d__stage.is-drag { cursor: grabbing; }
-.p3d__object { position: relative; width: 220px; height: 300px; transform-style: preserve-3d; transform: rotateX(var(--rx, -6deg)) rotateY(var(--ry, 0deg)); }
+.p3d__object { position: relative; width: var(--showcase-width); aspect-ratio: 25 / 34; transform-style: preserve-3d; transform: rotateX(var(--rx, -6deg)) rotateY(var(--ry, 0deg)); }
 .p3d__face { position: absolute; inset: 0; backface-visibility: hidden; border: 1px solid rgba(247,242,234,.2); }
-.p3d__face--front { transform: translateZ(110px); }
-.p3d__face--right { transform: rotateY(90deg) translateZ(110px); }
-.p3d__face--back  { transform: rotateY(180deg) translateZ(110px); }
-.p3d__face--left  { transform: rotateY(-90deg) translateZ(110px); }
+.p3d__face--front { transform: translateZ(calc(var(--showcase-width) / 2)); }
+.p3d__face--right { transform: rotateY(90deg) translateZ(calc(var(--showcase-width) / 2)); }
+.p3d__face--back  { transform: rotateY(180deg) translateZ(calc(var(--showcase-width) / 2)); }
+.p3d__face--left  { transform: rotateY(-90deg) translateZ(calc(var(--showcase-width) / 2)); }
 .p3d__hint { margin-top: 24px; font-size: var(--fs-small); letter-spacing: .22em; text-transform: uppercase; color: var(--c-gold); }
 .p3d__text .h2 { margin-bottom: 24px; }
 .p3d__text .lede { margin-bottom: 36px; }
 
 @media (min-width: 900px) {
   .p3d__grid { grid-template-columns: 11fr 9fr; gap: 80px; } /* ~55% / 45% */
-  .p3d__stage { height: 480px; }
-  .p3d__object { width: 280px; height: 380px; }
-  .p3d__face--front { transform: translateZ(140px); }
-  .p3d__face--right { transform: rotateY(90deg) translateZ(140px); }
-  .p3d__face--back  { transform: rotateY(180deg) translateZ(140px); }
-  .p3d__face--left  { transform: rotateY(-90deg) translateZ(140px); }
 }

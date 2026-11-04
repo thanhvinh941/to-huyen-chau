@@ -1,0 +1,45 @@
+/* One chapter fills at least the usable viewport. Content may grow when needed. */
+[data-section-assist] {
+  --chapter-height: calc(100vh - var(--header-h));
+  --chapter-padding: clamp(24px, 4svh, 48px);
+  padding-top: var(--header-h);
+}
+@supports (height: 100svh) {
+  [data-section-assist] { --chapter-height: calc(100svh - var(--header-h)); }
+}
+[data-section-assist] > section { min-height: var(--chapter-height); }
+[data-section-assist] > .section {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-block: var(--chapter-padding);
+}
+/* The closing invitation and footer form one ending, not a full-screen chapter. */
+[data-section-assist] > .contact-cta {
+  min-height: 0;
+  padding-block: clamp(40px, 6svh, 64px);
+}
+[data-section-assist] .products__head,
+[data-section-assist] .collection__head { margin-bottom: 24px; }
+[data-section-assist] > .hero {
+  height: var(--chapter-height);
+  max-height: none;
+}
+[data-section-assist] .hero__content { padding-top: 0; }
+
+@media (min-width: 1024px) {
+
+  /* Product images follow their column width and preserve the portrait ratio. */
+  [data-section-assist] .products__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  [data-section-assist] .pcard:nth-child(2) { margin-top: 0; }
+
+  [data-section-assist] .p3d__grid { gap: 48px; }
+
+  [data-section-assist] .cslide { flex-basis: clamp(28%, calc(var(--chapter-height) * .5), 38%); }
+  [data-section-assist] .cslide--tall { margin-top: 32px; }
+  [data-section-assist] .collection__all { margin-top: 24px; }
+}
+/* A short viewport or enlarged text can require more than one screen. */
+@media (max-height: 620px) {
+  [data-section-assist] > .hero { min-height: 560px; }
+}

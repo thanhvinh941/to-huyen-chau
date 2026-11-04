@@ -1,5 +1,17 @@
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+/* Homepage chapter navigation: one native scroll mechanism, no wheel interception.
+   Oversized snap areas remain scrollable within their content. */
+@media (min-width: 1024px) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  html:has([data-section-assist]) {
+    scroll-snap-type: y mandatory;
+    scroll-padding-top: var(--header-h);
+  }
+  [data-section-assist] > section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+}
 body {
   margin: 0;
   background: var(--c-ivory);

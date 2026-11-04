@@ -1,0 +1,29 @@
+<!--#include partials/layout/head.html -->
+<body id="top">
+<!--#include partials/layout/header.html -->
+<main id="main" class="inner-page">
+  <div class="container detail-breadcrumb"><a class="breadcrumb" href="/">Trang chủ</a> / <a class="breadcrumb" href="/san-pham">Sản phẩm</a> / <span>{{name}}</span></div>
+  <section class="container detail-layout" aria-labelledby="product-title">
+    <div data-gallery>
+      <div class="media media--ratio-4x5 {{tone}} detail-image" data-tilt data-gallery-stage><span class="media__label" data-gallery-label>{{name}} · Tổng thể · Ảnh mẫu</span></div>
+      <div class="gallery-tabs" role="group" aria-label="Góc nhìn sản phẩm">
+        <button type="button" aria-pressed="true" data-view="Tổng thể">01 / Tổng thể</button><button type="button" aria-pressed="false" data-view="Chi tiết">02 / Chi tiết</button><button type="button" aria-pressed="false" data-view="Chất liệu">03 / Chất liệu</button>
+      </div>
+      <p class="note">Khung ảnh minh họa bố cục. Album sản phẩm thật sẽ được bổ sung.</p>
+    </div>
+    <div class="detail-copy">
+      <span class="eyebrow">{{categoryLabel}} / Tơ Huyền Châu</span>
+      <h1 class="h1" id="product-title">{{name}}</h1>
+      <p class="detail-tagline">{{tagline}}</p><p class="lede">{{productDescription}}</p>
+      <p class="sample-note">Sản phẩm mẫu · Giá, vật liệu cụ thể và khả năng đặt hàng cần được xác nhận với thương hiệu.</p>
+      <a class="btn btn--solid" href="/lien-he?san-pham={{slug}}">Yêu cầu tư vấn</a>
+      <div class="product-facts">
+        <details open><summary>Chất liệu & đặc điểm</summary><p>Định hướng chất liệu lụa. Thành phần, kích thước, màu sắc và chi tiết hoàn thiện sẽ được công bố theo từng mẫu chính thức.</p></details>
+        <details><summary>Bảo quản</summary><p>Liên hệ để nhận hướng dẫn phù hợp với chất liệu và cấu tạo của mẫu bạn chọn.</p></details>
+        <details><summary>Đặt hàng & giao nhận</summary><p>Gửi tên sản phẩm qua trang liên hệ. Thương hiệu sẽ xác nhận thông tin, giá và phương thức nhận hàng trước khi đặt.</p></details>
+      </div>
+    </div>
+  </section>
+  <section class="section section--paper"><div class="container"><header class="products__head"><h2 class="h2">Cùng một <em>cảm hứng.</em></h2><a class="link-arrow" href="/san-pham">Tất cả sản phẩm</a></header><ul class="products__grid catalog-grid">{{relatedCards}}</ul></div></section>
+</main>
+<!--#include partials/layout/footer.html -->

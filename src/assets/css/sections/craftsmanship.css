@@ -1,4 +1,31 @@
 .craft__head { margin-bottom: 56px; }
+.craft-scene { --scene-silk-delay: .3s; --scene-product-delay: .9s; --scene-caption-delay: 1.5s; position: relative; margin-bottom: 72px; background: var(--c-paper); overflow: hidden; isolation: isolate; }
+.craft-scene__art { width: 100%; height: auto; }
+.craft-scene__caption { padding: 24px; }
+.craft-scene__caption .eyebrow { margin-bottom: 12px; font-size: .6875rem; }
+.craft-scene__caption .note { display: block; margin-top: 16px; max-width: 30ch; }
+.js .craft-scene[data-reveal] { opacity: 1; transform: none; transition: none; }
+.js .craft-scene__layer, .js .craft-scene__caption { opacity: 0; transition: opacity .8s var(--ease), transform .8s var(--ease); }
+.js .craft-scene__silk { transform: translate(-36px, 20px); transition-duration: 1.2s, 1.4s; }
+.js .craft-scene__product { transform: translateY(24px); transform-box: fill-box; transform-origin: center; transition-duration: 1s, 1.2s; }
+.js .craft-scene__caption { transform: translateY(12px); }
+.js .craft-scene.is-in .craft-scene__layer, .js .craft-scene.is-in .craft-scene__caption { opacity: 1; transform: none; }
+.js .craft-scene.is-in .craft-scene__silk { transition-delay: var(--scene-silk-delay); }
+.js .craft-scene.is-in .craft-scene__product { transition-delay: var(--scene-product-delay); }
+.js .craft-scene.is-in .craft-scene__caption { transition-delay: var(--scene-caption-delay); }
+/* Reset offscreen quickly, so a return scroll does not catch a half-reset scene. */
+.js .craft-scene:not(.is-in) .craft-scene__layer, .js .craft-scene:not(.is-in) .craft-scene__caption { transition-duration: .15s; transition-delay: 0s; }
+@media (max-width: 767px) {
+  .craft-scene { --scene-silk-delay: .2s; --scene-product-delay: .65s; --scene-caption-delay: 1.1s; }
+  .js .craft-scene__silk { transition-duration: .9s, 1.1s; }
+  .js .craft-scene__product { transition-duration: .8s, 1s; }
+}
+@media (min-width: 768px) {
+  .craft-scene__caption { position: absolute; left: 6%; top: 12%; padding: 0; max-width: 35%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .craft-scene[data-reveal] .craft-scene__layer, .js .craft-scene[data-reveal] .craft-scene__caption { opacity: 1; transform: none; transition: none; }
+}
 .craft__steps { display: grid; gap: 48px; counter-reset: step; position: relative; }
 .step .media { margin-bottom: 20px; }
 .step__no { display: block; font-family: var(--f-display); font-size: 2.5rem; color: var(--c-gold-deep); line-height: 1; margin-bottom: 8px; }

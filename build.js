@@ -18,6 +18,11 @@ const path = require('path');
 const SRC = path.join(__dirname, 'src');
 const DIST = path.join(__dirname, 'dist');
 const PAGES = path.join(SRC, 'pages');
+const products = JSON.parse(fs.readFileSync(path.join(SRC, 'data/products.json'), 'utf8'));
+const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+function productCards(items) {
+  return items.map((p) => `<li class="pcard" data-reveal data-name="${escapeHtml(p.name)}" data-category="${escapeHtml(p.category)}" data-order="${p.order}"><a href="/san-pham/${escapeHtml(p.slug)}" class="pcard__link"><div class="media media--ratio-4x5 ${escapeHtml(p.tone)} pcard__media"><span class="media__label">${escapeHtml(p.name)} · Ảnh mẫu</span></div><h3 class="h3">${escapeHtml(p.name)}</h3><p class="note">${escapeHtml(p.tagline)}</p><span class="pcard__more">Xem chi tiết →</span></a></li>`).join('\n');
+}
 
 const read = (p) => fs.readFileSync(p, 'utf8');
 
@@ -53,10 +58,11 @@ function listPages(dir, base = '') {
   });
 }
 
-function buildPage(rel) {
-  let html = include(read(path.join(PAGES, rel)));
+function buildPage(rel, template, data = {}) {
+  let html = include(template || read(path.join(PAGES, rel)));
   let vars;
   [html, vars] = extractVars(html);
+  Object.assign(vars, { productCards: productCards(products) }, data);
 
   const slug = rel.replace(/\.html$/, '');
   const urlPath = slug === 'index' ? '/' : '/' + slug.replace(/\/index$/, '');
@@ -69,7 +75,7 @@ function buildPage(rel) {
 
   // Đánh dấu link nav của trang hiện tại
   html = html.replace(/(<a class="nav__link"[^>]*?href="([^"]+)")/g, (m, a, href) =>
-    href === urlPath ? `${a} aria-current="page"` : m
+    href === urlPath ? `${a} aria-current="page"` : href === '/san-pham' && urlPath.startsWith('/san-pham/') ? `${a} aria-current="location"` : m
   );
 
   // Biến link gốc "/..." thành tương đối theo độ sâu trang -> chạy được khi mở file://,
@@ -88,20 +94,35 @@ function buildPage(rel) {
 
 function build() {
   const t = Date.now();
-  fs.rmSync(DIST, { recursive: true, force: true });
+  // Keep served assets available while rebuilding; Windows may lock files in use.
   fs.mkdirSync(DIST, { recursive: true });
 
   // assets (trừ css nguồn, css được gộp riêng)
   const assets = path.join(SRC, 'assets');
   fs.cpSync(assets, path.join(DIST, 'assets'), {
     recursive: true,
-    filter: (p) => !p.startsWith(path.join(assets, 'css')),
+    filter: (p) => {
+      if (p.startsWith(path.join(assets, 'css'))) return false;
+      const dest = path.join(DIST, 'assets', path.relative(assets, p));
+      // Avoid touching unchanged files, including assets held open by the server.
+      return !fs.statSync(p).isFile() || !fs.existsSync(dest) || !fs.readFileSync(p).equals(fs.readFileSync(dest));
+    },
   });
   const cssOut = path.join(DIST, 'assets', 'css');
   fs.mkdirSync(cssOut, { recursive: true });
   fs.writeFileSync(path.join(cssOut, 'main.css'), bundleCss(path.join(assets, 'css', 'main.css')));
 
-  const built = listPages(PAGES).map(buildPage);
+  const built = listPages(PAGES).map((rel) => buildPage(rel));
+  const productTemplate = read(path.join(SRC, 'templates/product.html'));
+  products.forEach((product) => {
+    built.push(buildPage(`san-pham/${product.slug}.html`, productTemplate, {
+      ...Object.fromEntries(Object.entries(product).map(([key, value]) => [key, escapeHtml(value)])),
+      title: escapeHtml(`${product.name} — Tơ Huyền Châu`),
+      description: escapeHtml(product.tagline),
+      productDescription: escapeHtml(product.description),
+      relatedCards: productCards(products.filter((p) => p.slug !== product.slug)),
+    }));
+  });
   console.log(`Build xong ${built.length} trang trong ${Date.now() - t}ms`);
   built.forEach((f) => console.log('  ' + f));
 }

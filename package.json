@@ -6,6 +6,7 @@
   "scripts": {
     "build": "node build.js",
     "watch": "node build.js --watch",
+    "preserve": "npm run build",
     "serve": "npx --yes serve dist -l 3000"
   },
   "engines": {
