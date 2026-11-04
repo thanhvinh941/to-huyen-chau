@@ -1,0 +1,23 @@
+.btn {
+  display: inline-flex; align-items: center; gap: 14px;
+  padding: 16px 28px;
+  font-size: var(--fs-small); letter-spacing: 0.18em; text-transform: uppercase;
+  border: 1px solid currentColor;
+  transition: background 0.3s var(--ease), color 0.3s var(--ease), border-color 0.3s var(--ease);
+}
+.btn::after { content: "→"; transition: transform 0.3s var(--ease); }
+.btn:hover::after { transform: translateX(5px); }
+.btn--solid { background: var(--c-ink); color: var(--c-on-dark); border-color: var(--c-ink); }
+.btn--solid:hover { background: var(--c-gold-deep); border-color: var(--c-gold-deep); }
+.btn--light { background: var(--c-ivory); color: var(--c-ink); border-color: var(--c-ivory); }
+.btn--light:hover { background: transparent; color: var(--c-ivory); }
+.btn--ghost:hover { background: var(--c-ink); color: var(--c-on-dark); }
+.section--dark .btn--ghost:hover { background: var(--c-ivory); color: var(--c-ink); }
+
+.link-arrow {
+  display: inline-flex; gap: 12px; align-items: center;
+  font-size: var(--fs-small); letter-spacing: 0.18em; text-transform: uppercase;
+  border-bottom: 1px solid currentColor; padding-bottom: 6px;
+}
+.link-arrow::after { content: "→"; transition: transform 0.3s var(--ease); }
+.link-arrow:hover::after { transform: translateX(5px); }

@@ -1,0 +1,39 @@
+/* Design tokens: sửa ở đây để đổi toàn site */
+:root {
+  /* Màu */
+  --c-ivory: #f7f2ea;
+  --c-paper: #efe8dc;
+  --c-ink: #1c1916;
+  --c-ink-soft: #4a443d;
+  --c-muted: #8a8177;
+  --c-gold: #a98a5c;
+  --c-gold-deep: #7d6338;
+  --c-line: rgba(28, 25, 22, 0.14);
+  --c-on-dark: #f7f2ea;
+
+  /* Chữ */
+  --f-display: "Cormorant Garamond", "Times New Roman", serif;
+  --f-body: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --fs-h1: clamp(2.5rem, 1.2rem + 5.6vw, 5.5rem);   /* 40 → 88 */
+  --fs-h2: clamp(1.875rem, 1rem + 3.2vw, 3.5rem);   /* 30 → 56 */
+  --fs-h3: clamp(1.25rem, 1rem + 0.9vw, 1.625rem);
+  --fs-body: 1rem;
+  --fs-small: 0.8125rem;
+
+  /* Layout */
+  --w-content: 1200px;
+  --gutter: 20px;
+  --header-h: 64px;
+  --section-gap: 72px;
+
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur: 0.8s;
+}
+
+@media (min-width: 768px) {
+  :root { --gutter: 32px; --header-h: 72px; --section-gap: 96px; }
+}
+@media (min-width: 1200px) {
+  :root { --gutter: 40px; --header-h: 80px; --section-gap: 120px; }
+}

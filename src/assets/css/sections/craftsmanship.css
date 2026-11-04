@@ -1,0 +1,15 @@
+.craft__head { margin-bottom: 56px; }
+.craft__steps { display: grid; gap: 48px; counter-reset: step; position: relative; }
+.step .media { margin-bottom: 20px; }
+.step__no { display: block; font-family: var(--f-display); font-size: 2.5rem; color: var(--c-gold-deep); line-height: 1; margin-bottom: 8px; }
+.step .h3 { margin-bottom: 6px; }
+
+@media (min-width: 768px) {
+  .craft__steps { grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  /* Đường timeline nối 3 bước */
+  .craft__steps::before { content: ""; position: absolute; left: 0; right: 0; top: -20px; height: 1px; background: var(--c-line); }
+  .step { position: relative; }
+  .step::before { content: ""; position: absolute; top: -24px; left: 0; width: 9px; height: 9px; border-radius: 50%; background: var(--c-gold-deep); }
+  .step:nth-child(2) .media { margin-top: 40px; } /* so le nhẹ cho nhịp editorial */
+  .step:nth-child(2) .media + .step__no { margin-top: 0; }
+}

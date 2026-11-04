@@ -1,0 +1,20 @@
+.h1, .h2, .h3 { font-family: var(--f-display); font-weight: 500; line-height: 1.08; letter-spacing: -0.01em; }
+.h1 { font-size: var(--fs-h1); }
+.h2 { font-size: var(--fs-h2); }
+.h3 { font-size: var(--fs-h3); line-height: 1.25; }
+.h1 em, .h2 em { font-style: italic; color: var(--c-gold-deep); }
+.section--dark .h2 em, .hero .h1 em { color: var(--c-gold); }
+
+.eyebrow {
+  display: block;
+  font-size: var(--fs-small);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--c-gold-deep);
+  margin-bottom: 20px;
+}
+.section--dark .eyebrow { color: var(--c-gold); }
+
+.lede { font-size: 1.0625rem; color: var(--c-ink-soft); max-width: 52ch; }
+.section--dark .lede { color: rgba(247, 242, 234, 0.75); }
+.note { font-size: var(--fs-small); color: var(--c-muted); }

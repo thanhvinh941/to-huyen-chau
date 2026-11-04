@@ -1,0 +1,20 @@
+/* Điểm vào CSS. build.js gộp các @import thành 1 file. Thứ tự quan trọng. */
+@import "base/tokens.css";
+@import "base/reset.css";
+@import "base/typography.css";
+
+@import "components/button.css";
+@import "components/media.css";
+@import "components/reveal.css";
+
+@import "layout/header.css";
+@import "layout/footer.css";
+
+@import "sections/hero.css";
+@import "sections/project-intro.css";
+@import "sections/heritage.css";
+@import "sections/craftsmanship.css";
+@import "sections/product-showcase.css";
+@import "sections/product-3d.css";
+@import "sections/collection.css";
+@import "sections/contact-cta.css";

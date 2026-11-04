@@ -1,0 +1,17 @@
+/* Scroll reveal. Chỉ ẩn khi JS chạy (html.js), nên không có JS vẫn thấy đủ nội dung */
+.js [data-reveal] {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity var(--dur) var(--ease), transform var(--dur) var(--ease);
+  transition-delay: calc(var(--i, 0) * 120ms);
+}
+.js [data-reveal="left"] { transform: translateX(-40px); }
+.js [data-reveal="right"] { transform: translateX(40px); }
+.js [data-reveal].is-in { opacity: 1; transform: none; }
+
+/* Mask reveal cho ảnh: mở dần từ trái sang phải như dải lụa */
+.js [data-reveal="mask"] {
+  opacity: 1; transform: none;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1.2s var(--ease);
+}
+.js [data-reveal="mask"].is-in { clip-path: inset(0 0 0 0); }

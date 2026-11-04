@@ -1,0 +1,14 @@
+{
+  "name": "to-huyen-chau",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Website Tơ Huyền Châu - HTML tĩnh, ghép partial bằng build.js",
+  "scripts": {
+    "build": "node build.js",
+    "watch": "node build.js --watch",
+    "serve": "npx --yes serve dist -l 3000"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
