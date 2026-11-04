@@ -36,12 +36,17 @@
 .product-facts details { border-top: 1px solid var(--c-line); padding-block: 20px; }
 .product-facts summary { cursor: pointer; }
 .product-facts p { margin-top: 16px; color: var(--c-ink-soft); }
-.collection-feature { position: relative; height: min(70svh,720px); min-height: 360px; background: var(--c-ink); color: var(--c-on-dark); }
+.collection-feature { position: relative; width: 100%; min-height: calc((100vh - var(--header-h)) * .85); min-height: calc((100svh - var(--header-h)) * .85); background: var(--c-ink); color: var(--c-on-dark); touch-action: pan-y pinch-zoom; }
 .collection-frame { position: absolute; inset: 0; animation: editorial-fade .5s var(--ease); }
 .collection-frame .media__label { align-self: center; justify-self: center; text-align: center; }
 @keyframes editorial-fade { from { opacity: 0; } to { opacity: 1; } }
 .editorial-controls { position: absolute; bottom: 24px; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; }
 .editorial-controls button { width: 48px; height: 48px; border: 1px solid currentColor; border-radius: 50%; margin-left: 8px; }
+.editorial-controls button { transition: background .3s var(--ease), color .3s var(--ease); }
+.editorial-controls button:hover { background: var(--c-ivory); color: var(--c-ink); }
+@media (max-width: 767px) {
+  .collection-frame .media__label { max-width: 80%; padding-bottom: 5rem; }
+}
 .editorial-gallery { display: grid; gap: 40px; }
 .editorial-gallery figcaption { margin-top: 16px; color: var(--c-muted); font-size: var(--fs-small); }
 .closing { text-align: center; }

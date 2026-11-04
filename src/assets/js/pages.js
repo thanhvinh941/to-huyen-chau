@@ -48,14 +48,43 @@
 
   document.querySelectorAll('[data-editorial-gallery]').forEach((gallery) => {
     const slides = [...gallery.querySelectorAll('.collection-frame')];
-    let index = 0;
+    const requested = Number(new URLSearchParams(location.search).get('anh'));
+    let index = Number.isInteger(requested) && requested >= 1 && requested <= slides.length ? requested - 1 : 0;
     const go = (delta) => {
       index = (index + delta + slides.length) % slides.length;
-      slides.forEach((slide, i) => { slide.hidden = i !== index; });
+      slides.forEach((slide, i) => {
+        slide.hidden = i !== index;
+        slide.classList.toggle('is-current', i === index);
+      });
       gallery.querySelector('[data-editorial-count]').textContent = `${String(index + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
     };
     gallery.querySelector('[data-editorial-prev]').addEventListener('click', () => go(-1));
     gallery.querySelector('[data-editorial-next]').addEventListener('click', () => go(1));
+    go(0);
+    slides.forEach((slide, i) => {
+      slide.setAttribute('role', 'group');
+      slide.setAttribute('aria-roledescription', 'slide');
+      slide.setAttribute('aria-label', `${i + 1} / ${slides.length}`);
+    });
+    gallery.addEventListener('keydown', (event) => {
+      if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+      if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+      event.preventDefault();
+      go(event.key === 'ArrowRight' ? 1 : -1);
+    });
+    let touchStart;
+    gallery.addEventListener('touchstart', (event) => {
+      touchStart = event.touches.length === 1 ? { x: event.touches[0].clientX, y: event.touches[0].clientY } : null;
+    }, { passive: true });
+    gallery.addEventListener('touchcancel', () => { touchStart = null; }, { passive: true });
+    gallery.addEventListener('touchend', (event) => {
+      if (!touchStart || event.touches.length) { touchStart = null; return; }
+      const touch = event.changedTouches[0];
+      const dx = touch.clientX - touchStart.x;
+      const dy = touch.clientY - touchStart.y;
+      touchStart = null;
+      if (Math.abs(dx) > gallery.clientWidth * .12 && Math.abs(dx) > Math.abs(dy) * 1.5) go(dx < 0 ? 1 : -1);
+    }, { passive: true });
   });
 
   const form = document.querySelector('[data-contact-form]');

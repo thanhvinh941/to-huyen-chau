@@ -74,7 +74,7 @@ function buildPage(rel, template, data = {}) {
   });
 
   // Đánh dấu link nav của trang hiện tại
-  html = html.replace(/(<a class="nav__link"[^>]*?href="([^"]+)")/g, (m, a, href) =>
+  html = html.replace(/(<a\b[^>]*?href="([^"]+)")/g, (m, a, href) =>
     href === urlPath ? `${a} aria-current="page"` : href === '/san-pham' && urlPath.startsWith('/san-pham/') ? `${a} aria-current="location"` : m
   );
 

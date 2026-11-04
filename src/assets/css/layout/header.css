@@ -28,7 +28,8 @@ body:has(> [data-section-assist]) > .header {
   background: currentColor; transform: scaleX(0); transform-origin: right;
   transition: transform 0.35s var(--ease);
 }
-.nav__link:hover::after, .nav__link[aria-current="page"]::after { transform: scaleX(1); transform-origin: left; }
+.nav__link:hover::after, .nav__link[aria-current]::after { transform: scaleX(1); transform-origin: left; }
+.mobile-menu a[aria-current], .header__cta[aria-current] { color: var(--c-gold-deep); }
 
 .header__cta { display: none; }
 
