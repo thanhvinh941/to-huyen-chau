@@ -8,3 +8,5 @@
 .contact-cta .lede { margin-bottom: 36px; }
 .contact-cta__actions { display: flex; flex-wrap: wrap; gap: 16px; justify-content: center; }
 @keyframes drift { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+
+@media (prefers-reduced-motion: reduce) { .contact-cta { animation: none; } }

@@ -15,3 +15,10 @@
   transition: clip-path 1.2s var(--ease);
 }
 .js [data-reveal="mask"].is-in { clip-path: inset(0 0 0 0); }
+
+/* Giảm chuyển động: chỉ fade, không trượt / mở dải */
+@media (prefers-reduced-motion: reduce) {
+  .js [data-reveal], .js [data-reveal="left"], .js [data-reveal="right"] { transform: none; }
+  .js [data-reveal="mask"] { clip-path: none; opacity: 0; transition: opacity var(--dur) var(--ease); }
+  .js [data-reveal="mask"].is-in { opacity: 1; }
+}

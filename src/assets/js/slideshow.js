@@ -17,7 +17,7 @@
     };
     const play = () => {
       const ms = +root.dataset.autoplay;
-      if (!ms || reduce) return;
+      if (!ms) return; // autoplay là crossfade nhẹ nên vẫn chạy khi giảm chuyển động
       clearInterval(timer);
       timer = setInterval(() => go(i + 1), ms);
     };

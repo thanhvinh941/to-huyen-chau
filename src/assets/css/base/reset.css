@@ -28,7 +28,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 .section--paper { background: var(--c-paper); }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
+/* Giảm chuyển động (cài đặt hệ điều hành): bỏ cuộn mượt, parallax, trượt, lặp vô hạn.
+   Vẫn giữ fade để trang không bị "đứng". Chi tiết ở từng file section. */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
