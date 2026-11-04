@@ -72,6 +72,13 @@ function buildPage(rel) {
     href === urlPath ? `${a} aria-current="page"` : m
   );
 
+  // Biến link gốc "/..." thành tương đối theo độ sâu trang -> chạy được khi mở file://,
+  // deploy thư mục con (GitHub Pages dạng user.github.io/repo/) hay tên miền riêng.
+  // Trong src/ vẫn viết /assets/..., /san-pham... cho gọn.
+  const depth = slug === 'index' ? 0 : slug.replace(/\/index$/, '').split('/').length;
+  const prefix = depth ? '../'.repeat(depth) : './';
+  html = html.replace(/(href|src)="\/(?!\/)([^"]*)"/g, (_, attr, rest) => `${attr}="${prefix}${rest}"`);
+
   const outFile =
     slug === 'index' ? path.join(DIST, 'index.html') : path.join(DIST, slug.replace(/\/index$/, ''), 'index.html');
   fs.mkdirSync(path.dirname(outFile), { recursive: true });
