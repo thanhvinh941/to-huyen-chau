@@ -9,6 +9,14 @@
     const pad = (n) => String(n).padStart(2, '0');
     let i = 0, timer;
 
+    // Replay the active slide's entrance when returning to the hero.
+    if ('IntersectionObserver' in window) {
+      const visibility = new IntersectionObserver(([entry]) => {
+        root.classList.toggle('is-offscreen', !entry.isIntersecting);
+      });
+      visibility.observe(root);
+    }
+
     const go = (n) => {
       slides[i].classList.remove('is-active');
       i = (n + slides.length) % slides.length;

@@ -6,7 +6,7 @@
 .slide::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,.1) 40%, rgba(0,0,0,.55) 100%); }
 .hero__content { position: relative; z-index: 2; padding-top: var(--header-h); }
 .hero__content > * { opacity: 0; transform: translateY(32px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
-.slide.is-active .hero__content > * { opacity: 1; transform: none; }
+.hero:not(.is-offscreen) .slide.is-active .hero__content > * { opacity: 1; transform: none; }
 .slide.is-active .hero__content > :nth-child(2) { transition-delay: .15s; }
 .slide.is-active .hero__content > :nth-child(3) { transition-delay: .3s; }
 .slide.is-active .hero__content > :nth-child(4) { transition-delay: .45s; }
